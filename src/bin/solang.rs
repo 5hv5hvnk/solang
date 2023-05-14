@@ -28,7 +28,6 @@ use std::{
 mod doc;
 mod idl;
 mod languageserver;
-
 fn main() {
     let version: &'static str = concat!("version ", env!("SOLANG_VERSION"));
 
@@ -100,7 +99,7 @@ fn main() {
                     .arg(
                         Arg::new("STD-JSON")
                             .help("mimic solidity json output on stdout")
-                            .conflicts_with_all(["VERBOSE", "OUTPUT", "EMIT"])
+                            .conflicts_with_all(["VERBOSE", "OUTPUT", "EMIT", "INPUT"])
                             .action(ArgAction::SetTrue)
                             .long("standard-json"),
                     )

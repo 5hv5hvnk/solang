@@ -3,7 +3,7 @@
 //! This module defines the json format for `solang compile --standard-json`.
 
 use crate::abi::ethereum::ABI;
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 
 #[derive(Serialize)]
@@ -35,7 +35,17 @@ pub struct LocJson {
     pub start: usize,
     pub end: usize,
 }
-
+#[derive(Deserialize)]
+#[allow(non_snake_case)]
+pub struct InputJson {
+    pub sourceLocation: Option<LocJson>,
+    #[serde(rename = "type")]
+    pub ty: String,
+    pub component: String,
+    pub severity: String,
+    pub message: String,
+    pub formattedMessage: String,
+}
 #[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct OutputJson {
